@@ -1,15 +1,22 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { Toaster } from '@/components/ui/sonner'
+import { LanguageProvider } from '@/components/providers/language-provider'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'Prestige Vue | Fenêtres & Portes à Montréal',
+  description: 'Installation professionnelle de fenêtres et portes à Montréal. Devis gratuit. Plus de 15 ans d\'expérience.',
   generator: 'v0.app',
+  openGraph: {
+    title: 'Prestige Vue | Fenêtres & Portes à Montréal',
+    description: 'Installation professionnelle de fenêtres et portes à Montréal. Devis gratuit.',
+    locale: 'fr_CA',
+    type: 'website',
+  },
   icons: {
     icon: [
       {
@@ -35,9 +42,34 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'LocalBusiness',
+              name: 'Prestige Vue',
+              description: 'Installation de fenêtres et portes à Montréal',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: '6255 Rue Marivaux',
+                addressLocality: 'Saint-Leonard',
+                postalCode: 'H1P3H6',
+                addressCountry: 'CA',
+              },
+              telephone: '+1-514-512-1060',
+              email: 'info@prestigevue.ca',
+            }),
+          }}
+        />
+      </head>
       <body className="font-sans antialiased">
-        {children}
+        <LanguageProvider>
+          {children}
+          <Toaster position="top-center" />
+        </LanguageProvider>
         <Analytics />
       </body>
     </html>
