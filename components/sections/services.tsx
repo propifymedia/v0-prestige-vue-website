@@ -1,17 +1,19 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useLanguage } from '@/components/providers/language-provider'
 import { dictionary } from '@/lib/dictionary'
+import { Button } from '@/components/ui/button'
 
 const SERVICE_IMAGES = [
-  '/images/service-windows.jpg',
-  '/images/service-doors.jpg',
-  '/images/service-commercial.jpg',
-  '/images/service-glass.jpg',
+  '/images/residential-service.svg',
+  '/images/commercial-service.svg',
+  '/images/motor-service.svg',
+  '/images/custom-service.svg',
 ]
 
-export function Services() {
+export function Services({ preview = false }: { preview?: boolean }) {
   const { lang, t } = useLanguage()
   const services = t('services')
 
@@ -51,13 +53,24 @@ export function Services() {
                 <h3 className="text-lg font-semibold text-charcoal">
                   {service.title[lang]}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {service.description[lang]}
-                </p>
+                {!preview && (
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {service.description[lang]}
+                  </p>
+                )}
               </div>
             </div>
           ))}
         </div>
+
+        {/* View All CTA (preview mode only) */}
+        {preview && (
+          <div className="mt-10 text-center">
+            <Button asChild className="bg-navy text-white hover:bg-navy/90">
+              <Link href="/services">{services.viewAll}</Link>
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   )

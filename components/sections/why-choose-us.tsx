@@ -1,12 +1,14 @@
 'use client'
 
+import Link from 'next/link'
 import { Wrench, MessageSquare, ShieldCheck } from 'lucide-react'
 import { useLanguage } from '@/components/providers/language-provider'
 import { dictionary } from '@/lib/dictionary'
+import { Button } from '@/components/ui/button'
 
 const ICONS = [Wrench, MessageSquare, ShieldCheck]
 
-export function WhyChooseUs() {
+export function WhyChooseUs({ preview = false }: { preview?: boolean }) {
   const { lang, t } = useLanguage()
   const whyChooseUs = t('whyChooseUs')
 
@@ -43,13 +45,24 @@ export function WhyChooseUs() {
                 </h3>
 
                 {/* Description */}
-                <p className="mt-3 leading-relaxed text-muted-foreground">
-                  {feature.description[lang]}
-                </p>
+                {!preview && (
+                  <p className="mt-3 leading-relaxed text-muted-foreground">
+                    {feature.description[lang]}
+                  </p>
+                )}
               </div>
             )
           })}
         </div>
+
+        {/* Learn More CTA (preview mode only) */}
+        {preview && (
+          <div className="mt-10 text-center">
+            <Button asChild className="bg-navy text-white hover:bg-navy/90">
+              <Link href="/about">{whyChooseUs.learnMore}</Link>
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   )

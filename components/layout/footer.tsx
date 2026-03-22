@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Phone, Mail, MapPin, Facebook, Instagram } from 'lucide-react'
 import { useLanguage } from '@/components/providers/language-provider'
 import { LanguageToggle } from '@/components/language-toggle'
@@ -16,8 +17,14 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <Link href="/" className="text-2xl font-bold">
-              Prestige Vue
+            <Link href="/">
+              <Image
+                src="/images/logo.svg"
+                alt="Prestige Vue Decor & Blinds"
+                width={56}
+                height={56}
+                className="rounded-full"
+              />
             </Link>
             <p className="mt-4 leading-relaxed text-white/70">
               {footer.tagline}
@@ -46,25 +53,25 @@ export function Footer() {
             <h3 className="text-lg font-semibold">{footer.quickLinks}</h3>
             <nav className="mt-4 flex flex-col gap-3">
               <Link
-                href="#services"
+                href="/services"
                 className="text-white/70 transition-colors hover:text-white"
               >
                 {nav.services}
               </Link>
               <Link
-                href="#gallery"
+                href="/gallery"
                 className="text-white/70 transition-colors hover:text-white"
               >
                 {nav.gallery}
               </Link>
               <Link
-                href="#why-choose-us"
+                href="/about"
                 className="text-white/70 transition-colors hover:text-white"
               >
                 {nav.about}
               </Link>
               <Link
-                href="#quote"
+                href="/contact"
                 className="text-white/70 transition-colors hover:text-white"
               >
                 {nav.contact}

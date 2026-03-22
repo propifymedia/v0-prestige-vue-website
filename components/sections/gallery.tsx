@@ -2,9 +2,11 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useLanguage } from '@/components/providers/language-provider'
 import { dictionary } from '@/lib/dictionary'
 import { Lightbox } from '@/components/lightbox'
+import { Button } from '@/components/ui/button'
 
 const GALLERY_IMAGES = [
   '/images/gallery-1.jpg',
@@ -15,25 +17,29 @@ const GALLERY_IMAGES = [
   '/images/gallery-6.jpg',
 ]
 
-export function Gallery() {
+export function Gallery({ preview = false }: { preview?: boolean }) {
   const { lang, t } = useLanguage()
   const gallery = t('gallery')
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
-  const images = GALLERY_IMAGES.map((src, index) => ({
+  const allImages = GALLERY_IMAGES.map((src, index) => ({
     src,
     caption: dictionary.galleryItems[index].caption,
   }))
 
-  const openLightbox = (index: number) => setLightboxIndex(index)
+  const images = preview ? allImages.slice(0, 3) : allImages
+
+  const openLightbox = (index: number) => {
+    if (!preview) setLightboxIndex(index)
+  }
   const closeLightbox = () => setLightboxIndex(null)
   const prevImage = () =>
     setLightboxIndex((prev) =>
-      prev !== null ? (prev - 1 + images.length) % images.length : null
+      prev !== null ? (prev - 1 + allImages.length) % allImages.length : null
     )
   const nextImage = () =>
     setLightboxIndex((prev) =>
-      prev !== null ? (prev + 1) % images.length : null
+      prev !== null ? (prev + 1) % allImages.length : null
     )
 
   return (
@@ -50,14 +56,14 @@ export function Gallery() {
         </div>
 
         {/* Bento Grid */}
-        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className={`mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3`}>
           {images.map((image, index) => (
             <button
               key={index}
               onClick={() => openLightbox(index)}
               className={`group relative overflow-hidden rounded-lg bg-navy ${
-                index === 0 ? 'sm:col-span-2 sm:row-span-2' : ''
-              } ${index === 0 ? 'aspect-square sm:aspect-auto' : 'aspect-[4/3]'}`}
+                !preview && index === 0 ? 'sm:col-span-2 sm:row-span-2' : ''
+              } ${!preview && index === 0 ? 'aspect-square sm:aspect-auto' : 'aspect-[4/3]'}`}
             >
               <Image
                 src={image.src}
@@ -65,7 +71,7 @@ export function Gallery() {
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                 sizes={
-                  index === 0
+                  !preview && index === 0
                     ? '(max-width: 640px) 100vw, 66vw'
                     : '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
                 }
@@ -79,12 +85,21 @@ export function Gallery() {
             </button>
           ))}
         </div>
+
+        {/* View All CTA (preview mode only) */}
+        {preview && (
+          <div className="mt-10 text-center">
+            <Button asChild className="bg-navy text-white hover:bg-navy/90">
+              <Link href="/gallery">{gallery.viewAll}</Link>
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Lightbox */}
-      {lightboxIndex !== null && (
+      {!preview && lightboxIndex !== null && (
         <Lightbox
-          images={images}
+          images={allImages}
           currentIndex={lightboxIndex}
           onClose={closeLightbox}
           onPrev={prevImage}

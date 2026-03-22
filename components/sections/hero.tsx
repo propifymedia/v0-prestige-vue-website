@@ -17,7 +17,7 @@ export function Hero() {
       {/* Background Image */}
       <Image
         src="/images/hero.jpg"
-        alt="Modern living room with large windows"
+        alt="Beautiful interior with custom blinds"
         fill
         priority
         className="object-cover"
@@ -41,7 +41,7 @@ export function Hero() {
             size="lg"
             className="bg-sky-blue px-8 py-6 text-lg font-semibold text-navy hover:bg-sky-blue/90"
           >
-            <Link href="#quote">{hero.cta}</Link>
+            <Link href="/contact">{hero.cta}</Link>
           </Button>
         </div>
       </div>

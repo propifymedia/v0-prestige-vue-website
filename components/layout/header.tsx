@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { Menu, Facebook, Instagram } from 'lucide-react'
 import { useLanguage } from '@/components/providers/language-provider'
 import { LanguageToggle } from '@/components/language-toggle'
-import { useActiveSection, type SectionId } from '@/lib/use-active-section'
 import { Button } from '@/components/ui/button'
 import {
   Sheet,
@@ -15,16 +16,16 @@ import {
 } from '@/components/ui/sheet'
 import { cn } from '@/lib/utils'
 
-const NAV_ITEMS: { key: keyof typeof import('@/lib/dictionary').dictionary.nav; href: string; sectionId: SectionId }[] = [
-  { key: 'services', href: '#services', sectionId: 'services' },
-  { key: 'gallery', href: '#gallery', sectionId: 'gallery' },
-  { key: 'about', href: '#why-choose-us', sectionId: 'why-choose-us' },
-  { key: 'contact', href: '#quote', sectionId: 'quote' },
+const NAV_ITEMS: { key: keyof typeof import('@/lib/dictionary').dictionary.nav; href: string }[] = [
+  { key: 'services', href: '/services' },
+  { key: 'gallery', href: '/gallery' },
+  { key: 'about', href: '/about' },
+  { key: 'contact', href: '/contact' },
 ]
 
 export function Header() {
   const { lang, t } = useLanguage()
-  const activeSection = useActiveSection()
+  const pathname = usePathname()
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -37,20 +38,27 @@ export function Header() {
   }, [])
 
   const nav = t('nav')
+  const isHome = pathname === '/'
 
   return (
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out',
-        isScrolled
-          ? 'bg-navy/90 backdrop-blur-[12px]'
-          : 'bg-transparent'
+        isHome && !isScrolled
+          ? 'bg-transparent'
+          : 'bg-navy/90 backdrop-blur-[12px]'
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="text-xl font-bold text-white">
-          Prestige Vue
+        <Link href="/">
+          <Image
+            src="/images/logo.svg"
+            alt="Prestige Vue Decor & Blinds"
+            width={48}
+            height={48}
+            className="rounded-full"
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -61,7 +69,7 @@ export function Header() {
               href={item.href}
               className={cn(
                 'relative py-1 text-sm font-medium text-white/90 transition-colors hover:text-white',
-                activeSection === item.sectionId &&
+                pathname === item.href &&
                   'after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-sky-blue after:content-[""]'
               )}
             >
@@ -93,7 +101,7 @@ export function Header() {
             asChild
             className="bg-sky-blue text-navy hover:bg-sky-blue/90"
           >
-            <Link href="#quote">{nav.quote}</Link>
+            <Link href="/contact">{nav.quote}</Link>
           </Button>
         </div>
 
@@ -122,7 +130,7 @@ export function Header() {
                     onClick={() => setMobileOpen(false)}
                     className={cn(
                       'px-2 py-2 text-lg font-medium text-white/90 transition-colors hover:text-white',
-                      activeSection === item.sectionId && 'border-l-2 border-sky-blue pl-4'
+                      pathname === item.href && 'border-l-2 border-sky-blue pl-4'
                     )}
                   >
                     {nav[item.key]}
@@ -137,7 +145,7 @@ export function Header() {
                   className="w-full bg-sky-blue text-navy hover:bg-sky-blue/90"
                   onClick={() => setMobileOpen(false)}
                 >
-                  <Link href="#quote">{nav.quote}</Link>
+                  <Link href="/contact">{nav.quote}</Link>
                 </Button>
               </div>
 

@@ -3,17 +3,19 @@ import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from '@/components/ui/sonner'
 import { LanguageProvider } from '@/components/providers/language-provider'
+import { Header } from '@/components/layout/header'
+import { Footer } from '@/components/layout/footer'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Prestige Vue | Fenêtres & Portes à Montréal',
-  description: 'Installation professionnelle de fenêtres et portes à Montréal. Devis gratuit. Plus de 15 ans d\'expérience.',
+  title: 'Prestige Vue | Décor & Stores à Montréal',
+  description: 'Vente et installation professionnelle de stores et habillages de fenêtres à Montréal. Devis gratuit. Plus de 15 ans d\'expérience.',
   generator: 'v0.app',
   openGraph: {
-    title: 'Prestige Vue | Fenêtres & Portes à Montréal',
-    description: 'Installation professionnelle de fenêtres et portes à Montréal. Devis gratuit.',
+    title: 'Prestige Vue | Décor & Stores à Montréal',
+    description: 'Vente et installation professionnelle de stores et habillages de fenêtres à Montréal. Devis gratuit.',
     locale: 'fr_CA',
     type: 'website',
   },
@@ -50,8 +52,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'LocalBusiness',
-              name: 'Prestige Vue',
-              description: 'Installation de fenêtres et portes à Montréal',
+              name: 'Prestige Vue Decor & Blinds',
+              description: 'Vente et installation de stores et habillages de fenêtres à Montréal',
               address: {
                 '@type': 'PostalAddress',
                 streetAddress: '6255 Rue Marivaux',
@@ -67,7 +69,9 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <LanguageProvider>
+          <Header />
           {children}
+          <Footer />
           <Toaster position="top-center" />
         </LanguageProvider>
         <Analytics />
