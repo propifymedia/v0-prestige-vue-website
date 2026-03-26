@@ -32,9 +32,11 @@ export function Footer() {
             {/* Social Links */}
             <div className="mt-6 flex gap-4">
               <Link
-                href="#"
+                href="https://www.facebook.com/61586956089948/?http_ref=eyJ0cyI6MTc3NDU1NjM3NDAwMCwiciI6IiJ9"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-sky-blue/20"
                 aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Facebook className="h-5 w-5" />
               </Link>

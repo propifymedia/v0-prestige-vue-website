@@ -82,9 +82,11 @@ export function Header() {
         <div className="hidden items-center gap-4 md:flex">
           <div className="flex items-center gap-3">
             <Link
-              href="#"
+              href="https://www.facebook.com/61586956089948/?http_ref=eyJ0cyI6MTc3NDU1NjM3NDAwMCwiciI6IiJ9"
               className="text-white/80 transition-colors hover:text-white"
               aria-label="Facebook"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Facebook className="h-5 w-5" />
             </Link>
@@ -154,9 +156,11 @@ export function Header() {
               {/* Mobile Social Links */}
               <div className="mt-auto flex items-center gap-4 px-2 pt-8">
                 <Link
-                  href="#"
+                  href="https://www.facebook.com/61586956089948/?http_ref=eyJ0cyI6MTc3NDU1NjM3NDAwMCwiciI6IiJ9"
                   className="text-white/80 transition-colors hover:text-white"
                   aria-label="Facebook"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Facebook className="h-5 w-5" />
                 </Link>
