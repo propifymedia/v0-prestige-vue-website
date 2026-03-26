@@ -237,9 +237,14 @@ export const dictionary = {
     phone: { fr: 'Téléphone', en: 'Phone' },
     additionalInfo: { fr: 'Informations supplémentaires (optionnel)', en: 'Additional Information (optional)' },
     submit: { fr: 'Envoyer la demande', en: 'Send Request' },
+    sending: { fr: 'Envoi en cours...', en: 'Sending...' },
     successMessage: {
       fr: 'Merci! Nous avons bien reçu votre demande. Un membre de notre équipe vous contactera sous peu.',
       en: 'Thank you! We\'ve received your request. A team member will contact you shortly.',
+    },
+    errorMessage: {
+      fr: 'Une erreur est survenue. Veuillez réessayer ou nous contacter directement.',
+      en: 'Something went wrong. Please try again or contact us directly.',
     },
   },
 

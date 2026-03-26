@@ -18,23 +18,36 @@ export function QuoteForm() {
     phone: '',
     additionalInfo: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsSubmitting(true)
 
-    // Show success toast
-    toast.success(quoteForm.successMessage, {
-      duration: 5000,
-    })
+    try {
+      const res = await fetch('/api/send-quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
 
-    // Clear form
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      additionalInfo: '',
-    })
+      if (!res.ok) {
+        throw new Error('Failed to send')
+      }
+
+      toast.success(quoteForm.successMessage, { duration: 5000 })
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        additionalInfo: '',
+      })
+    } catch {
+      toast.error(quoteForm.errorMessage, { duration: 5000 })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (
@@ -160,9 +173,10 @@ export function QuoteForm() {
           <Button
             type="submit"
             size="lg"
+            disabled={isSubmitting}
             className="w-full bg-navy text-white hover:bg-navy/90"
           >
-            {quoteForm.submit}
+            {isSubmitting ? quoteForm.sending : quoteForm.submit}
           </Button>
         </form>
       </div>
