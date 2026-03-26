@@ -39,9 +39,11 @@ export function Footer() {
                 <Facebook className="h-5 w-5" />
               </Link>
               <Link
-                href="#"
+                href="https://www.instagram.com/prestigevue/"
                 className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-sky-blue/20"
                 aria-label="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Instagram className="h-5 w-5" />
               </Link>
@@ -84,18 +86,18 @@ export function Footer() {
             <h3 className="text-lg font-semibold">{footer.contactUs}</h3>
             <div className="mt-4 flex flex-col gap-4">
               <a
-                href="tel:+15145121060"
+                href="tel:+15146679965"
                 className="flex items-center gap-3 text-white/70 transition-colors hover:text-white"
               >
                 <Phone className="h-5 w-5 shrink-0 text-sky-blue" />
-                514-512-1060
+                514-667-9965
               </a>
               <a
-                href="mailto:info@prestigevue.ca"
+                href="mailto:prestigevue@gmail.com"
                 className="flex items-center gap-3 text-white/70 transition-colors hover:text-white"
               >
                 <Mail className="h-5 w-5 shrink-0 text-sky-blue" />
-                info@prestigevue.ca
+                prestigevue@gmail.com
               </a>
               <div className="flex items-start gap-3 text-white/70">
                 <MapPin className="h-5 w-5 shrink-0 text-sky-blue" />

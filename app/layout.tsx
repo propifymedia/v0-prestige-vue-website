@@ -61,8 +61,8 @@ export default function RootLayout({
                 postalCode: 'H1P3H6',
                 addressCountry: 'CA',
               },
-              telephone: '+1-514-512-1060',
-              email: 'info@prestigevue.ca',
+              telephone: '+1-514-667-9965',
+              email: 'prestigevue@gmail.com',
             }),
           }}
         />

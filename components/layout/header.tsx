@@ -89,9 +89,11 @@ export function Header() {
               <Facebook className="h-5 w-5" />
             </Link>
             <Link
-              href="#"
+              href="https://www.instagram.com/prestigevue/"
               className="text-white/80 transition-colors hover:text-white"
               aria-label="Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Instagram className="h-5 w-5" />
             </Link>
@@ -159,9 +161,11 @@ export function Header() {
                   <Facebook className="h-5 w-5" />
                 </Link>
                 <Link
-                  href="#"
+                  href="https://www.instagram.com/prestigevue/"
                   className="text-white/80 transition-colors hover:text-white"
                   aria-label="Instagram"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Instagram className="h-5 w-5" />
                 </Link>

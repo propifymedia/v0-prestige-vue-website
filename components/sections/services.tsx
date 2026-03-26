@@ -38,12 +38,12 @@ export function Services({ preview = false }: { preview?: boolean }) {
               className="group overflow-hidden rounded-lg bg-card shadow-sm transition-shadow hover:shadow-md"
             >
               {/* Image */}
-              <div className="relative aspect-[4/3] bg-navy">
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={SERVICE_IMAGES[index]}
                   alt={service.title[lang]}
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="scale-[1.8] object-cover transition-transform duration-300 group-hover:scale-[1.9]"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
               </div>
@@ -63,14 +63,18 @@ export function Services({ preview = false }: { preview?: boolean }) {
           ))}
         </div>
 
-        {/* View All CTA (preview mode only) */}
-        {preview && (
-          <div className="mt-10 text-center">
+        {/* CTA */}
+        <div className="mt-10 text-center">
+          {preview ? (
             <Button asChild className="bg-navy text-white hover:bg-navy/90">
               <Link href="/services">{services.viewAll}</Link>
             </Button>
-          </div>
-        )}
+          ) : (
+            <Button asChild size="lg" className="bg-sky-blue text-navy hover:bg-sky-blue/90">
+              <Link href="/contact">{t('hero').cta}</Link>
+            </Button>
+          )}
+        </div>
       </div>
     </section>
   )

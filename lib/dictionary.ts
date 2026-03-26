@@ -23,16 +23,20 @@ export const dictionary = {
   // Hero
   hero: {
     headline: {
-      fr: 'Habillez vos fenêtres avec des stores sur mesure de qualité supérieure',
-      en: 'Dress your windows with premium custom blinds',
+      fr: 'Votre maison, parfaitement éclairée. Chaque pièce, chaque fenêtre.',
+      en: 'Your home, perfectly lit. Every room, every window.',
     },
     subheadline: {
-      fr: 'Installation professionnelle à Montréal depuis plus de 15 ans',
-      en: 'Professional installation in Montreal for over 15 years',
+      fr: 'Experts certifiés en stores au service de Montréal — mesures personnalisées, installation impeccable, satisfaction garantie.',
+      en: 'Certified blinds experts serving Montreal — custom-measured, perfectly installed, guaranteed.',
     },
     cta: {
       fr: 'Obtenir une soumission gratuite',
       en: 'Get a Free Quote',
+    },
+    trust: {
+      fr: '★ Certifié & Assuré · Consultation gratuite à domicile · Satisfaction 100% garantie',
+      en: '★ Certified & Insured · Free In-Home Consultation · 100% Satisfaction Guaranteed',
     },
   },
 

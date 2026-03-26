@@ -43,6 +43,9 @@ export function Hero() {
           >
             <Link href="/contact">{hero.cta}</Link>
           </Button>
+          <p className="mt-4 text-sm text-white/60">
+            {hero.trust}
+          </p>
         </div>
       </div>
 
